@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/src/presentation/difficulty/sc_difficulty.dart';
+import 'package:tic_tac_toe/src/presentation/game/sc_game.dart';
 import 'package:tic_tac_toe/src/presentation/menu/sc_menu.dart';
+import 'package:tic_tac_toe/src/presentation/rules/sc_rules.dart';
 
 class AppRouter {
   static const String initialRoute = MenuScreen.route;
@@ -10,6 +13,12 @@ class AppRouter {
         switch (settings.name) {
           case MenuScreen.route:
             return const MenuScreen();
+          case DifficultyScreen.route:
+            return const DifficultyScreen();
+          case GameScreen.route:
+            return const GameScreen();
+          case RulesScreen.route:
+            return const RulesScreen();
           default:
             return Scaffold(
               body: Center(
