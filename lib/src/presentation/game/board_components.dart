@@ -48,17 +48,21 @@ class _BoardTile extends StatelessWidget {
 }
 
 class _GameOverBoard extends StatelessWidget {
-  const _GameOverBoard.win({Key? key})
-      : text = 'Congrats !!',
+  const _GameOverBoard.win(
+      {required this.onTap, required this.name, Key? key})
+      : text = 'Congrats $name !!',
         url = 'https://media.giphy.com/media/dILfAuuI1GC963N239/giphy.gif',
         super(key: key);
-  const _GameOverBoard.lose({Key? key})
-      : text = 'Ahhhhh !!',
+  const _GameOverBoard.tie({required this.onTap, Key? key})
+      : text = 'Ahhhhh it\'s a tie !!',
+        name = '',
         url = 'https://media.giphy.com/media/kbQ79NKcEH02fokN9G/giphy.gif',
         super(key: key);
 
   final String text;
   final String url;
+  final VoidCallback onTap;
+  final String name;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -88,20 +92,23 @@ class _GameOverBoard extends StatelessWidget {
             child: SizedBox(
               height: 72,
               width: 72,
-              child: Container(
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color.fromARGB(255, 227, 75, 141),
-                        Color.fromARGB(255, 228, 149, 69),
-                      ],
-                      stops: [0.2, 1.0],
-                    ),
-                    shape: BoxShape.circle),
-                child: const Icon(
-                  Icons.replay,
-                  color: Colors.white,
-                  size: 32,
+              child: GestureDetector(
+                onTap: onTap,
+                child: Container(
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromARGB(255, 227, 75, 141),
+                          Color.fromARGB(255, 228, 149, 69),
+                        ],
+                        stops: [0.2, 1.0],
+                      ),
+                      shape: BoxShape.circle),
+                  child: const Icon(
+                    Icons.replay,
+                    color: Colors.white,
+                    size: 32,
+                  ),
                 ),
               ),
             ),

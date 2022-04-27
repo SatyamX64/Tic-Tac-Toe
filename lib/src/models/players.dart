@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 
 import '../../gen/assets.gen.dart';
@@ -5,7 +7,7 @@ import 'move.dart';
 
 part 'player.dart';
 
-class EasyBot implements Player {
+class EasyBot implements Player, Computer {
   @override
   final ImageProvider image;
   @override
@@ -14,6 +16,11 @@ class EasyBot implements Player {
   final String name;
   @override
   final Move move;
+
+  @override
+  int nextMove(List<Move> board) {
+    return board.indexWhere((element) => element == const Move.empty());
+  }
 
   EasyBot()
       : color = const Color(0xFF5B4DD0),
@@ -22,7 +29,7 @@ class EasyBot implements Player {
         move = Move.O();
 }
 
-class MediumBot implements Player {
+class MediumBot implements Player, Computer {
   @override
   final ImageProvider image;
   @override
@@ -31,6 +38,11 @@ class MediumBot implements Player {
   final String name;
   @override
   final Move move;
+
+  @override
+  int nextMove(List<Move> board) {
+    return board.indexWhere((element) => element == const Move.empty());
+  }
 
   MediumBot()
       : color = const Color(0xFFFBDB45),
@@ -39,7 +51,7 @@ class MediumBot implements Player {
         move = Move.O();
 }
 
-class HardBot implements Player {
+class HardBot implements Player, Computer {
   @override
   final ImageProvider image;
   @override
@@ -48,6 +60,11 @@ class HardBot implements Player {
   final String name;
   @override
   final Move move;
+
+  @override
+  int nextMove(List<Move> board) {
+    return board.indexWhere((element) => element == const Move.empty());
+  }
 
   HardBot()
       : color = const Color(0xFFE56871),
@@ -87,5 +104,5 @@ class PlayerB implements Player {
       : color = const Color(0xFFE56871),
         image = Assets.images.hard,
         name = 'Player B',
-        move = Move.X();
+        move = Move.O();
 }

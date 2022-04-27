@@ -42,23 +42,23 @@ class DifficultyScreen extends StatelessWidget {
                 ),
               ),
             ),
-            _DifficultyOption.forPlayer(
+            _DifficultyOption(
               player: EasyBot(),
-              secondary: const Color(0xFFE06EF9),
+              color: const Color(0xFFE06EF9),
             ),
             const SizedBox(
               height: 30,
             ),
-            _DifficultyOption.forPlayer(
-              secondary: const Color(0xFFDE6536),
+            _DifficultyOption(
+              color: const Color(0xFFDE6536),
               player: MediumBot(),
             ),
             const SizedBox(
               height: 30,
             ),
-            _DifficultyOption.forPlayer(
+            _DifficultyOption(
               player: HardBot(),
-              secondary: const Color(0xFF3F88B1),
+              color: const Color(0xFF3F88B1),
             ),
             const Spacer(),
           ],

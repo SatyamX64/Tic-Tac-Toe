@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/gen/fonts.gen.dart';
+import 'package:tic_tac_toe/src/models/players.dart';
 import 'package:tic_tac_toe/src/presentation/difficulty/sc_difficulty.dart';
 import 'package:tic_tac_toe/src/presentation/rules/sc_rules.dart';
 import 'package:tic_tac_toe/src/presentation/shared/gradient_button.dart';
@@ -59,7 +60,8 @@ class MenuScreen extends StatelessWidget {
               ),
               text: 'Multi Player',
               onPressed: () {
-                Navigator.of(context).pushNamed(GameScreen.route);
+                Navigator.of(context)
+                    .pushNamed(GameScreen.route, arguments: PlayerB());
               }),
           const SizedBox(
             height: 22,

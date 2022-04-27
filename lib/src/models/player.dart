@@ -13,3 +13,7 @@ abstract class Player {
     required this.name,
   });
 }
+
+abstract class Computer {
+  int nextMove(List<Move> _);
+}

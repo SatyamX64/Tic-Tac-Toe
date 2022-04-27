@@ -2,26 +2,13 @@ part of 'sc_difficulty.dart';
 
 class _DifficultyOption extends StatelessWidget {
   const _DifficultyOption({
-    required this.image,
-    required this.title,
-    required this.primary,
-    required this.secondary,
+    required this.player,
+    required this.color,
     Key? key,
   }) : super(key: key);
 
-  _DifficultyOption.forPlayer({
-    required Player player,
-    required this.secondary,
-    Key? key,
-  })  : image = player.image,
-        title = player.name,
-        primary = player.color,
-        super(key: key);
-
-  final ImageProvider image;
-  final String title;
-  final Color primary;
-  final Color secondary;
+  final Color color;
+  final Player player;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -36,12 +23,13 @@ class _DifficultyOption extends StatelessWidget {
               width: double.maxFinite,
               margin: const EdgeInsets.symmetric(horizontal: 52),
               decoration: BoxDecoration(
-                  color: secondary,
+                  color: color,
                   borderRadius: BorderRadius.circular(72),
-                  border: Border.all(color: primary, width: 2)),
+                  border: Border.all(color: player.color, width: 2)),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(GameScreen.route);
+                  Navigator.of(context).pushReplacementNamed(GameScreen.route,
+                      arguments: player);
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.transparent,
@@ -52,7 +40,7 @@ class _DifficultyOption extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 60),
                 ),
                 child: Text(
-                  title,
+                  player.name,
                   style: GoogleFonts.poppins(
                       fontSize: 20, fontWeight: FontWeight.w600),
                   textAlign: TextAlign.right,
@@ -63,12 +51,13 @@ class _DifficultyOption extends StatelessWidget {
           Positioned(
             left: 52,
             child: Container(
-              decoration: BoxDecoration(shape: BoxShape.circle, color: primary),
+              decoration:
+                  BoxDecoration(shape: BoxShape.circle, color: player.color),
               height: 120,
               width: 120,
               padding: const EdgeInsets.all(24),
               child: Image(
-                image: image,
+                image: player.image,
               ),
             ),
           ),
