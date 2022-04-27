@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tic_tac_toe/src/models/players.dart';
 import 'package:tic_tac_toe/src/presentation/difficulty/sc_difficulty.dart';
 import 'package:tic_tac_toe/src/presentation/game/sc_game.dart';
@@ -19,8 +20,9 @@ class AppRouter {
             return const DifficultyScreen();
           case GameScreen.route:
             final playerB = settings.arguments as Player;
-            return GameScreen(
-              service: GameService(A: PlayerA(), B: playerB),
+            return ChangeNotifierProvider(
+              create: (_) => GameService(A: PlayerA(), B: playerB),
+              child: const GameScreen(),
             );
           case RulesScreen.route:
             return const RulesScreen();

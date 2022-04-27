@@ -1,8 +1,9 @@
+import 'package:flutter/widgets.dart';
 import 'package:tic_tac_toe/src/models/players.dart';
 
 import '../models/move.dart';
 
-class GameService {
+class GameService extends ChangeNotifier {
   final Player A;
   final Player B;
 
@@ -19,7 +20,7 @@ class GameService {
     _turnA = true;
     _playerAWon = false;
     _playerBWon = false;
-
+    notifyListeners();
     if (A is Computer) {
       nextTurn((A as Computer).nextMove(board));
     }
@@ -35,21 +36,21 @@ class GameService {
 
     _board[index] = _turnA ? A.move : B.move;
     _turnA = !_turnA;
-
+    notifyListeners();
     var gameOver = checkGameOver();
-
     if (gameOver) {
+      notifyListeners();
       return;
     }
 
     if (A is Computer && _turnA) {
       int pos = (A as Computer).nextMove(board);
-      // await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
       nextTurn(pos);
     }
     if (B is Computer && !_turnA) {
       int pos = (B as Computer).nextMove(board);
-      // await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
       nextTurn(pos);
     }
   }
