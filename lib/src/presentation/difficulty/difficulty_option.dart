@@ -9,6 +9,15 @@ class _DifficultyOption extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  _DifficultyOption.forPlayer({
+    required Player player,
+    required this.secondary,
+    Key? key,
+  })  : image = player.image,
+        title = player.name,
+        primary = player.color,
+        super(key: key);
+
   final ImageProvider image;
   final String title;
   final Color primary;

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:tic_tac_toe/gen/assets.gen.dart';
 import 'package:tic_tac_toe/src/presentation/shared/gradient_scaffold.dart';
 
+import '../../models/players.dart';
 import 'board.dart';
 import 'player_card.dart';
 
 class GameScreen extends StatelessWidget {
-  const GameScreen({Key? key}) : super(key: key);
+  const GameScreen({required this.A, required this.B, Key? key})
+      : super(key: key);
 
+  final Player A, B;
   static const route = '/game';
   @override
   Widget build(BuildContext context) {
@@ -21,16 +23,12 @@ class GameScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  PlayerCard.X(
-                    backgroundColor: const Color(0xFFFBDB45),
-                    image: Assets.images.medium,
-                    name: 'Medium Bot',
+                  PlayerCard(
+                    player: A,
                     turn: true,
                   ),
-                  PlayerCard.O(
-                    backgroundColor: const Color(0xFF5B4DD0),
-                    image: Assets.images.easy,
-                    name: 'Easy Bot',
+                  PlayerCard(
+                    player: B,
                     turn: false,
                   ),
                 ],

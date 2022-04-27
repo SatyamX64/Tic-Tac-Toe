@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/src/models/players.dart';
 import 'package:tic_tac_toe/src/presentation/difficulty/sc_difficulty.dart';
 import 'package:tic_tac_toe/src/presentation/game/sc_game.dart';
 import 'package:tic_tac_toe/src/presentation/menu/sc_menu.dart';
@@ -16,7 +17,7 @@ class AppRouter {
           case DifficultyScreen.route:
             return const DifficultyScreen();
           case GameScreen.route:
-            return const GameScreen();
+            return GameScreen(A: PlayerA(), B: MediumBot());
           case RulesScreen.route:
             return const RulesScreen();
           default:

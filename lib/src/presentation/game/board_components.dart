@@ -27,24 +27,11 @@ class _Board extends StatelessWidget {
 
 class _BoardTile extends StatelessWidget {
   const _BoardTile({
+    required this.move,
     Key? key,
-  })  : character = ' ',
-        color = Colors.transparent,
-        super(key: key);
+  }) : super(key: key);
 
-  const _BoardTile.X({
-    Key? key,
-  })  : character = 'X',
-        color = const Color(0xFFE34951),
-        super(key: key);
-  const _BoardTile.O({
-    Key? key,
-  })  : character = 'O',
-        color = const Color(0xFFF8CE32),
-        super(key: key);
-
-  final String character;
-  final Color color;
+  final Move move;
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +42,7 @@ class _BoardTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       margin: const EdgeInsets.all(6),
-      child: Text(
-        character,
-        style: GoogleFonts.poppins(
-            color: color, fontWeight: FontWeight.w800, fontSize: 90),
-      ),
+      child: move.widget,
     );
   }
 }

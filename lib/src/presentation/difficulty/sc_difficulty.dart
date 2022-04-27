@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tic_tac_toe/gen/assets.gen.dart';
 import 'package:tic_tac_toe/src/presentation/game/sc_game.dart';
 import 'package:tic_tac_toe/src/presentation/shared/gradient_scaffold.dart';
+
+import '../../models/players.dart';
 
 part 'difficulty_option.dart';
 
@@ -41,29 +42,23 @@ class DifficultyScreen extends StatelessWidget {
                 ),
               ),
             ),
-            _DifficultyOption(
+            _DifficultyOption.forPlayer(
+              player: EasyBot(),
               secondary: const Color(0xFFE06EF9),
-              primary: const Color(0xFF5B4DD0),
-              title: 'Easy Bot',
-              image: Assets.images.easy,
             ),
             const SizedBox(
               height: 30,
             ),
-            _DifficultyOption(
+            _DifficultyOption.forPlayer(
               secondary: const Color(0xFFDE6536),
-              primary: const Color(0xFFFBDB45),
-              title: 'Medium Bot',
-              image: Assets.images.medium,
+              player: MediumBot(),
             ),
             const SizedBox(
               height: 30,
             ),
-            _DifficultyOption(
+            _DifficultyOption.forPlayer(
+              player: HardBot(),
               secondary: const Color(0xFF3F88B1),
-              primary: const Color(0xFFE56871),
-              title: 'Difficult Bot',
-              image: Assets.images.hard,
             ),
             const Spacer(),
           ],

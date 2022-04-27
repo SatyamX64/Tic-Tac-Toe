@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
+
+import '../../models/move.dart';
 
 part 'board_components.dart';
 
@@ -14,8 +15,13 @@ class GameBoard extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-        itemBuilder: (context, index) =>
-            index.isEven ? const _BoardTile.O() : const _BoardTile.X(),
+        itemBuilder: (context, index) => index.isEven
+            ? _BoardTile(
+                move: Move.X(),
+              )
+            : _BoardTile(
+                move: Move.O(),
+              ),
         itemCount: 9,
       ),
     );

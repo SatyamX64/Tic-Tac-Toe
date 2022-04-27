@@ -1,33 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:tic_tac_toe/src/models/players.dart';
 
 class PlayerCard extends StatelessWidget {
-  const PlayerCard.X({
-    required this.backgroundColor,
-    required this.image,
-    required this.name,
-    required this.turn,
-    Key? key,
-  })  : character = 'X',
-        characterColor = const Color(0xFFE34951),
-        super(key: key);
+  const PlayerCard({required this.player, required this.turn, Key? key})
+      : super(key: key);
 
-  const PlayerCard.O({
-    required this.backgroundColor,
-    required this.image,
-    required this.name,
-    required this.turn,
-    Key? key,
-  })  : character = 'O',
-        characterColor = const Color(0xFFF8CE32),
-        super(key: key);
+  final Player player;
 
-  final ImageProvider image;
-  final Color backgroundColor;
-  final Color characterColor;
-  final String name;
-  final String character;
   final bool turn;
 
   @override
@@ -59,27 +40,24 @@ class PlayerCard extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: backgroundColor),
+                        shape: BoxShape.circle, color: player.color),
                     height: 64,
                     width: 64,
                     padding: const EdgeInsets.all(12),
-                    child: Image(image: image),
+                    child: Image(image: player.image),
                   ),
                   const SizedBox(
                     height: 12,
                   ),
                   Text(
-                    name,
+                    player.name,
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600, fontSize: 16),
                   ),
-                  Text(
-                    character,
-                    style: GoogleFonts.poppins(
-                        color: characterColor,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 44),
-                  ),
+                  SizedBox(
+                    height: 44,
+                    child: player.move.widget,
+                  )
                 ],
               ),
             ),
