@@ -76,7 +76,7 @@ class _GameOverBoard extends StatelessWidget {
                 image,
                 Text(
                   text,
-                  style: GoogleFonts.poppins(
+                  style: const TextStyle(
                       fontWeight: FontWeight.w600, fontSize: 24),
                 ),
               ],

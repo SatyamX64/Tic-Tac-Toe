@@ -14,7 +14,7 @@ dependencies:
   equatable: ^2.0.3
   flutter:
     sdk: flutter
-  google_fonts: ^2.3.2
+  # google_fonts: ^2.3.2
   lottie: ^1.3.0
   provider: ^6.0.2
 
@@ -36,3 +36,19 @@ flutter:
     - family: Amity
       fonts:
         - asset: assets/fonts/amity.ttf
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Light.ttf
+          weight: 100
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Poppins-Black.ttf
+          weight: 900  

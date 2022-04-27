@@ -10,4 +10,7 @@ class FontFamily {
 
   /// Font family: Amity
   static const String amity = 'Amity';
+
+  /// Font family: Poppins
+  static const String poppins = 'Poppins';
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tic_tac_toe/src/models/players.dart';
 
@@ -17,10 +16,7 @@ class PlayerCard extends StatelessWidget {
       children: [
         SizedBox(
           height: 30,
-          child: turn
-              ? Lottie.network(
-                  'https://assets6.lottiefiles.com/packages/lf20_o87tttfh.json')
-              : null,
+          child: turn ? Lottie.asset('assets/images/down.json') : null,
         ),
         const SizedBox(
           height: 6,
@@ -51,7 +47,7 @@ class PlayerCard extends StatelessWidget {
                   ),
                   Text(
                     player.name,
-                    style: GoogleFonts.poppins(
+                    style: const TextStyle(
                         fontWeight: FontWeight.w600, fontSize: 16),
                   ),
                   SizedBox(
@@ -68,7 +64,7 @@ class PlayerCard extends StatelessWidget {
           height: 40,
           child: Text(
             turn ? 'Your Turn' : '',
-            style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
+            style: const TextStyle(fontWeight: FontWeight.w600),
           ),
         ),
       ],

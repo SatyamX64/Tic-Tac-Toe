@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class GradientButton extends StatelessWidget {
   const GradientButton(
@@ -37,7 +36,7 @@ class GradientButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: GoogleFonts.poppins(fontWeight: FontWeight.w700, fontSize: 22),
+          style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 22),
         ),
       ),
     );

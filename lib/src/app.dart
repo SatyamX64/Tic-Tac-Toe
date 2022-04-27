@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/gen/fonts.gen.dart';
 import 'package:tic_tac_toe/src/presentation/router.dart';
 
 class MyApp extends StatelessWidget {
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: AppRouter.initialRoute,
       onGenerateRoute: AppRouter.generateRoute,
-      theme: ThemeData(brightness: Brightness.dark),
+      theme: ThemeData(brightness: Brightness.dark,fontFamily: FontFamily.poppins),
     );
   }
 }

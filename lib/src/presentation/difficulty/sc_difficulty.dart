@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:tic_tac_toe/src/presentation/game/sc_game.dart';
 import 'package:tic_tac_toe/src/presentation/shared/gradient_scaffold.dart';
 
@@ -25,13 +24,13 @@ class DifficultyScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const [
                     Text(
                       'Select Difficulty',
-                      style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w700, fontSize: 32),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 32),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 174,
                       child: Divider(
                         color: Colors.amber,

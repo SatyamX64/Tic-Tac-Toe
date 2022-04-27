@@ -41,7 +41,7 @@ class _DifficultyOption extends StatelessWidget {
                 ),
                 child: Text(
                   player.name,
-                  style: GoogleFonts.poppins(
+                  style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.w600),
                   textAlign: TextAlign.right,
                 ),
