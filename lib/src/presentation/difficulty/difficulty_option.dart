@@ -31,7 +31,9 @@ class _DifficultyOption extends StatelessWidget {
                   borderRadius: BorderRadius.circular(72),
                   border: Border.all(color: primary, width: 2)),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed(GameScreen.route);
+                },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.transparent,
                   shadowColor: Colors.transparent,
