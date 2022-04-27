@@ -10,6 +10,12 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/A.png
+  AssetGenImage get a => const AssetGenImage('assets/images/A.png');
+
+  /// File path: assets/images/B.png
+  AssetGenImage get b => const AssetGenImage('assets/images/B.png');
+
   /// File path: assets/images/easy.png
   AssetGenImage get easy => const AssetGenImage('assets/images/easy.png');
 
@@ -18,6 +24,12 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/medium.png
   AssetGenImage get medium => const AssetGenImage('assets/images/medium.png');
+
+  /// File path: assets/images/tie.gif
+  AssetGenImage get tie => const AssetGenImage('assets/images/tie.gif');
+
+  /// File path: assets/images/win.gif
+  AssetGenImage get win => const AssetGenImage('assets/images/win.gif');
 }
 
 class Assets {

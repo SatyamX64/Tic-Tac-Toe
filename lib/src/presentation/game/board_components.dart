@@ -48,19 +48,18 @@ class _BoardTile extends StatelessWidget {
 }
 
 class _GameOverBoard extends StatelessWidget {
-  const _GameOverBoard.win(
-      {required this.onTap, required this.name, Key? key})
+  _GameOverBoard.win({required this.onTap, required this.name, Key? key})
       : text = 'Congrats $name !!',
-        url = 'https://media.giphy.com/media/dILfAuuI1GC963N239/giphy.gif',
+        image = Assets.images.win.image(),
         super(key: key);
-  const _GameOverBoard.tie({required this.onTap, Key? key})
+  _GameOverBoard.tie({required this.onTap, Key? key})
       : text = 'Ahhhhh it\'s a tie !!',
         name = '',
-        url = 'https://media.giphy.com/media/kbQ79NKcEH02fokN9G/giphy.gif',
+        image = Assets.images.tie.image(),
         super(key: key);
 
   final String text;
-  final String url;
+  final Image image;
   final VoidCallback onTap;
   final String name;
   @override
@@ -74,7 +73,7 @@ class _GameOverBoard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Image.network(url),
+                image,
                 Text(
                   text,
                   style: GoogleFonts.poppins(

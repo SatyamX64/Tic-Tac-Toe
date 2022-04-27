@@ -85,7 +85,7 @@ class PlayerA implements Player {
 
   PlayerA()
       : color = const Color(0xFFE56871),
-        image = Assets.images.hard,
+        image = Assets.images.a,
         name = 'Player A',
         move = Move.X();
 }
@@ -102,7 +102,7 @@ class PlayerB implements Player {
 
   PlayerB()
       : color = const Color(0xFFE56871),
-        image = Assets.images.hard,
+        image = Assets.images.b,
         name = 'Player B',
         move = Move.O();
 }
