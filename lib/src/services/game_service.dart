@@ -4,6 +4,20 @@ import 'package:tic_tac_toe/src/models/players.dart';
 import '../models/move.dart';
 
 class GameService extends ChangeNotifier {
+  bool _mounted = true;
+  bool get mounted => _mounted;
+  @override
+  void dispose() {
+    super.dispose();
+    _mounted = false;
+  }
+
+  void notify() {
+    if (mounted) {
+      notifyListeners();
+    }
+  }
+
   final Player A;
   final Player B;
 
@@ -20,7 +34,7 @@ class GameService extends ChangeNotifier {
     _turnA = true;
     _playerAWon = false;
     _playerBWon = false;
-    notifyListeners();
+    notify();
     if (A is Computer) {
       nextTurn((A as Computer).nextMove(board));
     }
@@ -36,10 +50,10 @@ class GameService extends ChangeNotifier {
 
     _board[index] = _turnA ? A.move : B.move;
     _turnA = !_turnA;
-    notifyListeners();
+    notify();
     var gameOver = checkGameOver();
     if (gameOver) {
-      notifyListeners();
+      notify();
       return;
     }
 
