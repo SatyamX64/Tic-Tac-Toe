@@ -5,6 +5,17 @@ class Move extends Equatable {
   final Widget widget;
   final String id;
 
+  static Move archNemesis(Move move) {
+    assert(move == const Move.X() || move == const Move.O());
+    if (move == const Move.X()) {
+      return const Move.O();
+    } else if (move == const Move.O()) {
+      return const Move.X();
+    } else {
+      throw ArgumentError('Invalid Move');
+    }
+  }
+
   const Move.X()
       : id = 'X',
         widget = const FittedBox(

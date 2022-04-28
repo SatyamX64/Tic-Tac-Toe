@@ -44,7 +44,12 @@ class MediumBot implements Player, Computer {
 
   @override
   int nextMove(List<Move> board, Move move) {
-    return board.indexWhere((element) => element == const Move.empty());
+    if (Random().nextBool()) {
+      final availableSlots = GameHelper.availableTiles(board);
+      var pos = Random().nextInt(availableSlots.length);
+      return availableSlots[pos];
+    }
+    return GameHelper.optimalPosition(board, move);
   }
 
   MediumBot({Move? move})
@@ -66,7 +71,7 @@ class HardBot implements Player, Computer {
 
   @override
   int nextMove(List<Move> board, Move move) {
-    return board.indexWhere((element) => element == const Move.empty());
+    return GameHelper.optimalPosition(board, move);
   }
 
   HardBot({Move? move})

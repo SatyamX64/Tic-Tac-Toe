@@ -11,6 +11,19 @@ class GameHelper {
     return availableSlots;
   }
 
+  static int _getScore(List<Move> board, Move playerMove) {
+    var winningMove = didSomeoneWin(board);
+
+    if (winningMove == const Move.empty()) {
+      return 0;
+    } else if (winningMove == playerMove) {
+      return 10;
+    } else if (winningMove != null) {
+      return -10;
+    }
+    return negaMax(board, playerMove).score;
+  }
+
   static Move? didSomeoneWin(List<Move> board) {
     // check first row
     if (board[0] == board[1] &&
@@ -83,4 +96,36 @@ class GameHelper {
       return false;
     }
   }
+
+  static _Choice negaMax(List<Move> board, Move playerMove) {
+    List<Move> boardDummy;
+    var bestChoice = _Choice(score: -10000, pos: -1);
+    final possiblePositions = GameHelper.availableTiles(board);
+    for (int i = 0; i < possiblePositions.length; i++) {
+      boardDummy = [...board];
+      boardDummy[possiblePositions.elementAt(i)] = playerMove;
+      int scoreFromThisChoice =
+          -_getScore(boardDummy, Move.archNemesis(playerMove));
+      if (scoreFromThisChoice > bestChoice.score) {
+        bestChoice.pos = possiblePositions.elementAt(i);
+        bestChoice.score = scoreFromThisChoice;
+      }
+    }
+    return bestChoice;
+  }
+
+  static int optimalPosition(List<Move> board, Move playerMove) {
+    var bestChoice = negaMax(board, playerMove);
+    return bestChoice.pos;
+  }
+}
+
+class _Choice {
+  int score;
+  int pos;
+
+  _Choice({
+    required this.score,
+    required this.pos,
+  });
 }

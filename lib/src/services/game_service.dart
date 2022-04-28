@@ -97,7 +97,7 @@ class GameService extends ChangeNotifier {
     initBoard();
   }
 
-  /// returns true if any player wins or game ties 
+  /// returns true if any player wins or game ties
   bool isGameOver() {
     // check first row
     var gameStatus = GameHelper.didSomeoneWin(board);
