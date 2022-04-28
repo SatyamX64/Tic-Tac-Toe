@@ -28,6 +28,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/medium.png
   AssetGenImage get medium => const AssetGenImage('assets/images/medium.png');
 
+  /// File path: assets/images/rule.gif
+  AssetGenImage get rule => const AssetGenImage('assets/images/rule.gif');
+
   /// File path: assets/images/tie.gif
   AssetGenImage get tie => const AssetGenImage('assets/images/tie.gif');
 
