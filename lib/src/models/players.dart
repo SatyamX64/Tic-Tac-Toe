@@ -19,7 +19,7 @@ class EasyBot implements Player, Computer {
   final Move move;
 
   @override
-  int nextMove(List<Move> board) {
+  int nextMove(List<Move> board, Move move) {
     final availableSlots = GameHelper.availableTiles(board);
     var pos = Random().nextInt(availableSlots.length);
     return availableSlots[pos];
@@ -43,7 +43,7 @@ class MediumBot implements Player, Computer {
   final Move move;
 
   @override
-  int nextMove(List<Move> board) {
+  int nextMove(List<Move> board, Move move) {
     return board.indexWhere((element) => element == const Move.empty());
   }
 
@@ -65,7 +65,7 @@ class HardBot implements Player, Computer {
   final Move move;
 
   @override
-  int nextMove(List<Move> board) {
+  int nextMove(List<Move> board, Move move) {
     return board.indexWhere((element) => element == const Move.empty());
   }
 

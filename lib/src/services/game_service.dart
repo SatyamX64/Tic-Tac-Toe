@@ -37,7 +37,7 @@ class GameService extends ChangeNotifier {
     _playerBWon = false;
     notify();
     if (A is Computer) {
-      nextTurn((A as Computer).nextMove(board));
+      nextTurn((A as Computer).nextMove(board, A.move));
     }
   }
 
@@ -68,13 +68,13 @@ class GameService extends ChangeNotifier {
     _turnA = !_turnA;
 
     if (A is Computer && _turnA) {
-      int pos = (A as Computer).nextMove(board);
+      int pos = (A as Computer).nextMove(board, A.move);
       await _dramaticPause();
       await nextTurn(pos);
       return;
     }
     if (B is Computer && !_turnA) {
-      int pos = (B as Computer).nextMove(board);
+      int pos = (B as Computer).nextMove(board, B.move);
       await _dramaticPause();
       await nextTurn(pos);
       return;
@@ -97,26 +97,21 @@ class GameService extends ChangeNotifier {
     initBoard();
   }
 
-  // sets and returns true if any player wins
+  /// returns true if any player wins or game ties 
   bool isGameOver() {
     // check first row
-    var gameStatus = GameHelper.gameStatus(board);
-    if (gameStatus == GameStatus.won) {
-      if (_turnA) {
-        _playerAWon = true;
-        _playerBWon = false;
-      } else {
-        _playerAWon = false;
-        _playerBWon = true;
-      }
-    } else if (gameStatus == GameStatus.tie) {
+    var gameStatus = GameHelper.didSomeoneWin(board);
+    if (gameStatus == null) return false;
+    if (gameStatus == A.move) {
+      _playerAWon = true;
+      _playerBWon = false;
+    } else if (gameStatus == B.move) {
+      _playerAWon = false;
+      _playerBWon = true;
+    } else if (gameStatus == const Move.empty()) {
       _playerAWon = false;
       _playerBWon = false;
     }
-    if (gameStatus == GameStatus.active) {
-      return false;
-    } else {
-      return true;
-    }
+    return true;
   }
 }

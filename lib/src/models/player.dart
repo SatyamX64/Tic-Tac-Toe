@@ -15,5 +15,5 @@ abstract class Player {
 }
 
 abstract class Computer {
-  int nextMove(List<Move> _);
+  int nextMove(List<Move> board, Move move);
 }
