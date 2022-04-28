@@ -40,12 +40,20 @@ class GameService extends ChangeNotifier {
     }
   }
 
-  void nextTurn(int index) async {
-    assert(index < _board.length);
+  Future<void> _dramaticPause({int intensity = 1}) async {
+    await Future.delayed(Duration(milliseconds: 600 * intensity));
+  }
 
+  Future<void> nextTurn(int index) async {
+    assert(index < _board.length);
+    
     // for when user taps on a already filled tile
     if (_board.elementAt(index) != const Move.empty()) {
-      return;
+      if (isComputerTurn) {
+        throw ArgumentError('Given tile is already filled');
+      } else {
+        return;
+      }
     }
 
     _board[index] = _turnA ? A.move : B.move;
@@ -53,19 +61,22 @@ class GameService extends ChangeNotifier {
     notify();
     var gameOver = checkGameOver();
     if (gameOver) {
+      await _dramaticPause();
       notify();
       return;
     }
 
     if (A is Computer && _turnA) {
       int pos = (A as Computer).nextMove(board);
-      await Future.delayed(const Duration(seconds: 1));
-      nextTurn(pos);
+      await _dramaticPause();
+      await nextTurn(pos);
+      return;
     }
     if (B is Computer && !_turnA) {
       int pos = (B as Computer).nextMove(board);
-      await Future.delayed(const Duration(seconds: 1));
-      nextTurn(pos);
+      await _dramaticPause();
+      await nextTurn(pos);
+      return;
     }
   }
 
