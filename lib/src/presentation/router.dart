@@ -9,31 +9,29 @@ import 'package:tic_tac_toe/src/services/game_service.dart';
 
 class AppRouter {
   static const String initialRoute = MenuScreen.route;
-  static Route<dynamic> generateRoute(RouteSettings settings) {
-    return MaterialPageRoute(
-      settings: settings,
-      builder: (context) {
-        switch (settings.name) {
-          case MenuScreen.route:
-            return const MenuScreen();
-          case DifficultyScreen.route:
-            return const DifficultyScreen();
-          case GameScreen.route:
-            final playerB = settings.arguments as Player;
-            return ChangeNotifierProvider(
-              create: (_) => GameService(A: PlayerA(), B: playerB),
-              child: const GameScreen(),
-            );
-          case RulesScreen.route:
-            return const RulesScreen();
-          default:
-            return Scaffold(
-              body: Center(
-                child: Text('No route defined for ${settings.name}'),
-              ),
-            );
-        }
-      },
-    );
+  static Route<dynamic>? generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case MenuScreen.route:
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => const MenuScreen());
+
+      case DifficultyScreen.route:
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => const DifficultyScreen());
+
+      case GameScreen.route:
+        final playerB = settings.arguments as Player;
+        return MaterialPageRoute(
+            settings: settings,
+            builder: (_) => ChangeNotifierProvider(
+                  create: (_) => GameService(A: PlayerA(), B: playerB),
+                  child: const GameScreen(),
+                ));
+      case RulesScreen.route:
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => const RulesScreen());
+      default:
+        return null;
+    }
   }
 }
