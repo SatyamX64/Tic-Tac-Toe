@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 
 import '../../gen/assets.gen.dart';
+import '../services/game_helper.dart';
 import 'move.dart';
 
 part 'player.dart';
@@ -19,13 +20,7 @@ class EasyBot implements Player, Computer {
 
   @override
   int nextMove(List<Move> board) {
-    var availableSlots = <int>[];
-    for (int i = 0; i < board.length; i++) {
-      if (board.elementAt(i) == const Move.empty()) {
-        availableSlots.add(i);
-      }
-    }
-
+    final availableSlots = GameHelper.availableTiles(board);
     var pos = Random().nextInt(availableSlots.length);
     return availableSlots[pos];
   }
