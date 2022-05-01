@@ -10,40 +10,10 @@ import '../game/sc_game.dart';
 
 part 'big_character.dart';
 
-class MenuScreen extends StatefulWidget {
+class MenuScreen extends StatelessWidget {
   const MenuScreen({Key? key}) : super(key: key);
 
   static const route = '/menu';
-
-  @override
-  State<MenuScreen> createState() => _MenuScreenState();
-}
-
-class _MenuScreenState extends State<MenuScreen>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(milliseconds: 1500),
-    vsync: this,
-  );
-  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
-    begin: const Offset(0.0, -2.0),
-    end: Offset.zero,
-  ).animate(CurvedAnimation(
-    parent: _controller,
-    curve: Curves.bounceOut,
-  ));
-
-  @override
-  void initState() {
-    super.initState();
-    _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,17 +23,13 @@ class _MenuScreenState extends State<MenuScreen>
           Expanded(
             flex: 6,
             child: Center(
-              child: SlideTransition(
-                position: _offsetAnimation,
-                child: RichText(
-                  text: TextSpan(
-                    text: '',
-                    children: List.generate(
-                      _title.length,
-                      (index) => _bigCharacter(
-                          _title.elementAt(index).character,
-                          _title.elementAt(index).color),
-                    ),
+              child: RichText(
+                text: TextSpan(
+                  text: '',
+                  children: List.generate(
+                    _title.length,
+                    (index) => _bigCharacter(_title.elementAt(index).character,
+                        _title.elementAt(index).color),
                   ),
                 ),
               ),
